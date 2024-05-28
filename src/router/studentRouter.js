@@ -62,7 +62,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/', async (req, res) => {
   try {
     const studentController = await StudentsCodesController();
     await studentController.delete(req, res);

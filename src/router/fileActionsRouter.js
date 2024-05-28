@@ -16,7 +16,7 @@ router.post('/', (req, res, next) => {
     });
 });
 
-router.get('/', async (req, res) => {
+router.get('/results', async (req, res) => {
     const fileName = req.query.userId;
     const filePath = path.join(__dirname, `../../results/${fileName}.xlsx`);
 
@@ -37,5 +37,24 @@ router.get('/', async (req, res) => {
         res.status(500).send('Ошибка при обработке запроса');
     }
 });
+
+router.get('/codes', async (req, res) => {
+    const fileName = req.query.userId;
+    const filePath = path.join(__dirname, `../../codes/${fileName}.xlsx`);
+
+    try {
+        res.download(filePath, (err) => {
+            if (err) {
+                console.error('Ошибка при скачивании файла:', err);
+                res.status(500).send('Ошибка при скачивании файла');
+            } else {
+                console.log('Файл успешно скачан');
+            }
+        });
+    } catch (error) {
+        console.error('Ошибка при обработке запроса:', error);
+        res.status(500).send('Ошибка при обработке запроса');
+    }
+})
 
 module.exports = router;
