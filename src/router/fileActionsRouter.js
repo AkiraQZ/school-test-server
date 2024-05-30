@@ -21,9 +21,7 @@ router.get('/results', async (req, res) => {
     const filePath = path.join(__dirname, `../../results/${fileName}.xlsx`);
 
     try {
-        // Предполагаем, что getResults теперь асинхронная функция
         await getResults(req.query.userId);
-        // Теперь мы можем безопасно отправить файл для скачивания
         res.download(filePath, (err) => {
             if (err) {
                 console.error('Ошибка при скачивании файла:', err);

@@ -2,6 +2,7 @@ const ExcelJS = require('exceljs');
 const axios = require('axios');
 const path = require('path');
 
+
 async function getTeacher(reqId) {
     try {
         const url = `${process.env.BASE_URL}/teacher/one?id=${reqId}`;
@@ -42,7 +43,7 @@ async function generateCodes(reqId) {
 
         const students = [];
         worksheet.eachRow((row, rowNumber) => {
-            if (rowNumber > 1) { // Skip the header row
+            if (rowNumber > 1) { 
                 const name = row.values[1];
                 students.push(name);
             }
